@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "email", "createdAt"]
+    },
+    "EncryptionRun": {
+      "title": "EncryptionRun",
+      "description": "Saved RC4 encryption or decryption record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "enum": ["encrypt", "decrypt"] },
+        "inputFormat": { "type": "string", "enum": ["text", "hex", "tiny-N4", "tiny-N8", "tiny-N16"] },
+        "outputFormat": { "type": "string", "enum": ["hex", "base64", "numbers", "binary"] },
+        "inputLength": { "type": "number" },
+        "keySnippet": { "type": "string", "maxLength": 64 },
+        "outputSnippet": { "type": "string", "maxLength": 128 },
+        "note": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "inputFormat", "outputFormat", "keySnippet", "outputSnippet", "createdAt"]
+    },
+    "ExperimentRun": {
+      "title": "ExperimentRun",
+      "description": "Saved cryptographic experiment results",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "experimentType": { "type": "string", "enum": ["bias", "key_reuse", "drop_n", "avalanche"] },
+        "title": { "type": "string", "maxLength": 128 },
+        "summary": { "type": "string", "maxLength": 500 },
+        "metricValue": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "experimentType", "title", "summary", "createdAt"]
+    },
+    "QuizScore": {
+      "title": "QuizScore",
+      "description": "User RC4 knowledge quiz score",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "score": { "type": "number" },
+        "totalQuestions": { "type": "number" },
+        "percentage": { "type": "number" },
+        "timeSpentSeconds": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "score", "totalQuestions", "percentage", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Stores user profiles with access restricted to the account owner"
+    },
+    "/encryption_runs/{runId}": {
+      "schema": { "$ref": "#/entities/EncryptionRun" },
+      "description": "Stores saved RC4 encryption runs per user"
+    },
+    "/experiment_runs/{expId}": {
+      "schema": { "$ref": "#/entities/ExperimentRun" },
+      "description": "Stores saved experimental findings (bias test, key reuse, etc.) per user"
+    },
+    "/quiz_scores/{scoreId}": {
+      "schema": { "$ref": "#/entities/QuizScore" },
+      "description": "Stores user quiz completion attempts and scores"
+    }
+  }
+}

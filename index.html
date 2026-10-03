@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Polyfill safeguard: Ensure window.fetch has both getter and setter
+      // Prevents "Cannot set property fetch of #<Window> which has only a getter"
+      try {
+        if (typeof window !== 'undefined' && typeof window.fetch === 'function') {
+          let _currentFetch = window.fetch.bind(window);
+          Object.defineProperty(window, 'fetch', {
+            get: function () {
+              return _currentFetch;
+            },
+            set: function (newFn) {
+              _currentFetch = newFn;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        }
+      } catch (e) {
+        console.warn('Fetch setter safeguard error:', e);
+      }
+    </script>
+    <title>RC4 Lab - Mô Phỏng Mã Hóa Dòng</title>
+    <meta name="description" content="Nền tảng học tập và mô phỏng thuật toán mã hóa dòng RC4 tương tác với KSA, PRGA, phân tích an toàn, thực nghiệm thiên vị và bài trắc nghiệm." />
+    <meta property="og:title" content="RC4 Lab - Mô Phỏng Mã Hóa Dòng" />
+    <meta property="og:description" content="Nền tảng học tập và mô phỏng thuật toán mã hóa dòng RC4 tương tác với KSA, PRGA, phân tích an toàn, thực nghiệm thiên vị và bài trắc nghiệm." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- PWA & Mobile Web App Standards -->
+    <meta name="theme-color" content="#070b14" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="RC4 Lab" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

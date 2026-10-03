@@ -1,0 +1,31 @@
+{
+  "id": "/",
+  "name": "RC4 Lab - Mô Phỏng Mã Hóa Dòng",
+  "short_name": "RC4 Lab",
+  "description": "Nền tảng học tập và mô phỏng thuật toán mã hóa dòng RC4 tương tác với KSA, PRGA, thực nghiệm và kiểm thử offline.",
+  "theme_color": "#070b14",
+  "background_color": "#070b14",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

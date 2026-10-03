@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)" stroke="#0284c7" stroke-width="8" stroke-opacity="0.5"/>
+
+  <!-- Subtle Cyber Matrix Lines -->
+  <path d="M 64 128 H 448 M 64 256 H 448 M 64 384 H 448" stroke="#0ea5e9" stroke-width="1.5" stroke-opacity="0.15" stroke-dasharray="8 8"/>
+  <path d="M 128 64 V 448 M 256 64 V 448 M 384 64 V 448" stroke="#0ea5e9" stroke-width="1.5" stroke-opacity="0.15" stroke-dasharray="8 8"/>
+
+  <!-- Outer Hexagonal / Shield Cyber Ring -->
+  <polygon points="256,70 410,150 410,362 256,442 102,362 102,150" fill="none" stroke="url(#cyanGrad)" stroke-width="12" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Binary Matrix Badge on Top -->
+  <rect x="186" y="110" width="140" height="32" rx="8" fill="#0369a1" fill-opacity="0.4" stroke="#38bdf8" stroke-width="2"/>
+  <text x="256" y="132" font-family="monospace" font-size="16" font-weight="bold" fill="#38bdf8" text-anchor="middle" letter-spacing="3">01010010</text>
+
+  <!-- Lock & Stream Shackle -->
+  <path d="M 196 220 V 175 C 196 142 223 115 256 115 C 289 115 316 142 316 175 V 220" fill="none" stroke="url(#cyanGrad)" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- Lock Body -->
+  <rect x="166" y="215" width="180" height="150" rx="24" fill="#090e17" stroke="url(#cyanGrad)" stroke-width="8"/>
+
+  <!-- RC4 Core Brand Text -->
+  <text x="256" y="280" font-family="'Fira Code', monospace, sans-serif" font-size="52" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">RC4</text>
+  <text x="256" y="325" font-family="sans-serif" font-size="20" font-weight="bold" fill="#38bdf8" text-anchor="middle" letter-spacing="6">STREAM</text>
+
+  <!-- Glowing keyhole / bit pulse -->
+  <circle cx="256" cy="380" r="14" fill="url(#greenGrad)" filter="url(#glow)"/>
+  <circle cx="256" cy="380" r="6" fill="#ffffff"/>
+</svg>

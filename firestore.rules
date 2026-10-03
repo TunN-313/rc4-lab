@@ -1,0 +1,130 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net (Pillar 1 & 4)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Health / boot connection probe
+    match /test/connection {
+      allow get: if true;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    // User Profile Validation on Create
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['userId', 'email']) &&
+        data.keys().hasOnly(['userId', 'email', 'displayName', 'createdAt']) &&
+        data.userId is string && data.userId == request.auth.uid &&
+        data.email is string && data.email.size() <= 256 &&
+        (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 128)) &&
+        (!('createdAt' in data) || data.createdAt == request.time);
+    }
+
+    // User Profile Validation on Update
+    function isValidUserUpdate(incomingData, existingData) {
+      return incomingData.userId == existingData.userId &&
+        incomingData.userId == request.auth.uid &&
+        incomingData.email is string && incomingData.email.size() <= 256 &&
+        incomingData.keys().hasOnly(['userId', 'email', 'displayName', 'createdAt', 'updatedAt']) &&
+        (!('displayName' in incomingData) || (incomingData.displayName is string && incomingData.displayName.size() <= 128)) &&
+        (!('createdAt' in existingData) || !('createdAt' in incomingData) || incomingData.createdAt == existingData.createdAt);
+    }
+
+    // Encryption Run Validation
+    function isValidEncryptionRun(data) {
+      return data.keys().hasAll(['userId', 'type', 'inputFormat', 'outputFormat', 'keySnippet', 'outputSnippet']) &&
+        data.keys().hasOnly(['userId', 'type', 'inputFormat', 'outputFormat', 'inputLength', 'keySnippet', 'outputSnippet', 'note', 'createdAt']) &&
+        data.userId is string && data.userId == request.auth.uid &&
+        data.type in ['encrypt', 'decrypt'] &&
+        data.inputFormat in ['text', 'hex', 'tiny-N4', 'tiny-N8', 'tiny-N16'] &&
+        data.outputFormat in ['hex', 'base64', 'numbers', 'binary'] &&
+        (!('inputLength' in data) || (data.inputLength is number && data.inputLength >= 0)) &&
+        data.keySnippet is string && data.keySnippet.size() <= 64 &&
+        data.outputSnippet is string && data.outputSnippet.size() <= 128 &&
+        (!('note' in data) || (data.note is string && data.note.size() <= 500)) &&
+        (!('createdAt' in data) || data.createdAt == request.time);
+    }
+
+    // Experiment Run Validation
+    function isValidExperimentRun(data) {
+      return data.keys().hasAll(['userId', 'experimentType', 'title', 'summary']) &&
+        data.keys().hasOnly(['userId', 'experimentType', 'title', 'summary', 'metricValue', 'createdAt']) &&
+        data.userId is string && data.userId == request.auth.uid &&
+        data.experimentType in ['bias', 'key_reuse', 'drop_n', 'avalanche'] &&
+        data.title is string && data.title.size() <= 128 &&
+        data.summary is string && data.summary.size() <= 500 &&
+        (!('metricValue' in data) || (data.metricValue is string && data.metricValue.size() <= 128)) &&
+        (!('createdAt' in data) || data.createdAt == request.time);
+    }
+
+    // Quiz Score Validation
+    function isValidQuizScore(data) {
+      return data.keys().hasAll(['userId', 'score', 'totalQuestions', 'percentage']) &&
+        data.keys().hasOnly(['userId', 'score', 'totalQuestions', 'percentage', 'timeSpentSeconds', 'createdAt']) &&
+        data.userId is string && data.userId == request.auth.uid &&
+        data.score is number && data.score >= 0 && data.score <= 10 &&
+        data.totalQuestions is number && data.totalQuestions == 10 &&
+        data.percentage is number && data.percentage >= 0 && data.percentage <= 100 &&
+        (!('timeSpentSeconds' in data) || (data.timeSpentSeconds is number && data.timeSpentSeconds >= 0)) &&
+        (!('createdAt' in data) || data.createdAt == request.time);
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // Users can never be listed
+      allow create: if isOwner(userId) && isValidUserProfile(incoming());
+      allow update: if isOwner(userId) && isValidUserUpdate(incoming(), existing());
+      allow delete: if isOwner(userId);
+    }
+
+    // Encryption Runs Collection
+    match /encryption_runs/{runId} {
+      allow get: if isSignedIn() && isValidId(runId) && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && isValidId(runId) && isValidEncryptionRun(incoming());
+      allow update: if false; // Immutable audit log of runs
+      allow delete: if isSignedIn() && isValidId(runId) && existing().userId == request.auth.uid;
+    }
+
+    // Experiment Runs Collection
+    match /experiment_runs/{expId} {
+      allow get: if isSignedIn() && isValidId(expId) && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && isValidId(expId) && isValidExperimentRun(incoming());
+      allow update: if false; // Immutable audit log
+      allow delete: if isSignedIn() && isValidId(expId) && existing().userId == request.auth.uid;
+    }
+
+    // Quiz Scores Collection
+    match /quiz_scores/{scoreId} {
+      allow get: if isSignedIn() && isValidId(scoreId) && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && isValidId(scoreId) && isValidQuizScore(incoming());
+      allow update: if false; // Quiz scores are final
+      allow delete: if isSignedIn() && isValidId(scoreId) && existing().userId == request.auth.uid;
+    }
+  }
+}
