@@ -123,7 +123,7 @@ export const NAV_PAGES: Record<NavTab, NavPageItem> = {
   },
   apps: {
     id: 'apps',
-    label: 'Ứng Dụng & Lịch Sử',
+    label: 'Ứng Dụng Thực Tế',
     shortDesc: 'Lịch sử ứng dụng trong WEP, SSL/TLS và dòng thời gian khai tử',
     icon: Radio,
     groupId: 'home_group',
@@ -320,7 +320,7 @@ export const CONTEXT_PANEL_DATA: Record<NavTab, ContextPanelData> = {
     ],
   },
   apps: {
-    title: 'Lịch Sử & Khai Tử',
+    title: 'Ứng Dụng Thực Tế',
     subtitle: 'WEP, TLS và chuẩn thay thế',
     badge: 'Bảo mật',
     sections: [

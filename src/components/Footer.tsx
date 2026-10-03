@@ -74,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
                   onClick={() => onTabChange('apps')}
                   className="hover:text-cyan-400 transition cursor-pointer"
                 >
-                  Lịch sử WEP, TLS & Khai tử
+                  Ứng dụng thực tế (WEP, TLS & Khai tử)
                 </button>
               </li>
               <li>
