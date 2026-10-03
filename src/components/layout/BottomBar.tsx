@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { isFirebaseConfigured } from '../../firebase/config';
 import { PWAInstallButton } from '../../pwa/PWAInstallButton';
+import { REPO_URL } from '../../config/project';
 
 export const BottomBar: React.FC = () => {
   return (
@@ -41,7 +42,7 @@ export const BottomBar: React.FC = () => {
       {/* Right: GitHub, License & PWA */}
       <div className="flex items-center gap-3">
         <a
-          href="https://github.com/TunN-313/rc4-lab"
+          href={REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1 text-slate-400 hover:text-white transition"

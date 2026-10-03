@@ -74,11 +74,11 @@ Toàn bộ ứng dụng được Việt hóa 100%, trang bị giao diện phòng
 
 | Mô phỏng mảng trạng thái hoán vị S (Lưới 16x16 để quan sát) | Thực nghiệm Thiên vị Byte #2 |
 | :---: | :---: |
-| ![Visualizer Placeholder](https://raw.githubusercontent.com/hoanglong128980/rc4-lab/main/docs/screenshots/visualizer.png) | ![Experiments Placeholder](https://raw.githubusercontent.com/hoanglong128980/rc4-lab/main/docs/screenshots/experiments.png) |
+| ![Visualizer Placeholder](https://raw.githubusercontent.com/TunN-313/rc4-lab/main/docs/screenshots/visualizer.png) | ![Experiments Placeholder](https://raw.githubusercontent.com/TunN-313/rc4-lab/main/docs/screenshots/experiments.png) |
 
 | Công cụ Mã hóa & Test Vectors | Trắc nghiệm Kiến thức 10 Câu |
 | :---: | :---: |
-| ![Cipher Tool Placeholder](https://raw.githubusercontent.com/hoanglong128980/rc4-lab/main/docs/screenshots/cipher.png) | ![Quiz Placeholder](https://raw.githubusercontent.com/hoanglong128980/rc4-lab/main/docs/screenshots/quiz.png) |
+| ![Cipher Tool Placeholder](https://raw.githubusercontent.com/TunN-313/rc4-lab/main/docs/screenshots/cipher.png) | ![Quiz Placeholder](https://raw.githubusercontent.com/TunN-313/rc4-lab/main/docs/screenshots/quiz.png) |
 
 ---
 
@@ -109,7 +109,7 @@ Toàn bộ ứng dụng được Việt hóa 100%, trang bị giao diện phòng
 
 ```bash
 # 1. Clone kho lưu trữ mã nguồn
-git clone https://github.com/hoanglong128980/rc4-lab.git
+git clone https://github.com/TunN-313/rc4-lab.git
 cd rc4-lab
 
 # 2. Cài đặt các gói phụ thuộc

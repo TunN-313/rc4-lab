@@ -1,6 +1,7 @@
 import React from 'react';
-import { ShieldCheck, BookOpen, AlertTriangle, ExternalLink, Terminal } from 'lucide-react';
+import { ShieldCheck, BookOpen, AlertTriangle, ExternalLink, Terminal, Github } from 'lucide-react';
 import type { NavTab } from './Navbar';
+import { REPO_URL } from '../config/project';
 
 interface FooterProps {
   onTabChange: (tab: NavTab) => void;
@@ -140,6 +141,17 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
             © 2026 RC4 Lab — Nền tảng diễn giải mật mã học trực quan. Phát triển cho cộng đồng nghiên cứu an toàn thông tin Việt Nam.
           </div>
           <div className="flex items-center gap-4">
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-slate-400 hover:text-cyan-400 transition"
+            >
+              <Github className="w-3.5 h-3.5" />
+              <span>GitHub</span>
+              <ExternalLink className="w-2.5 h-2.5" />
+            </a>
+            <span className="text-slate-700">•</span>
             <span className="font-mono text-cyan-400/80">IETF RFC 7465 (Prohibiting RC4)</span>
           </div>
         </div>

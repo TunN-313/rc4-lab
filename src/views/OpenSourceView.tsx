@@ -14,6 +14,13 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+import {
+  REPO_FULL_NAME,
+  REPO_URL,
+  CLONE_CMD,
+  REPO_IS_PUBLIC,
+} from '../config/project';
+
 const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
   <svg
     className={className}
@@ -33,8 +40,8 @@ export const OpenSourceView: React.FC = () => {
   const [copiedClone, setCopiedClone] = useState(false);
   const [copiedRepoUrl, setCopiedRepoUrl] = useState(false);
 
-  const repoUrl = 'https://github.com/hoanglong128980/rc4-lab';
-  const cloneCmd = `git clone ${repoUrl}.git`;
+  const repoUrl = REPO_URL;
+  const cloneCmd = CLONE_CMD;
 
   const handleCopyClone = () => {
     navigator.clipboard.writeText(cloneCmd);
@@ -141,10 +148,16 @@ export const OpenSourceView: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-white font-mono">hoanglong128980/rc4-lab</h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-cyan-950 border border-cyan-800 text-cyan-300">
-                  Public Repo
-                </span>
+                <h2 className="text-lg font-bold text-white font-mono">{REPO_FULL_NAME}</h2>
+                {REPO_IS_PUBLIC ? (
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-cyan-950 border border-cyan-800 text-cyan-300">
+                    Public Repo
+                  </span>
+                ) : (
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-950/80 border border-amber-800/80 text-amber-300">
+                    Private Repo
+                  </span>
+                )}
               </div>
               <p className="text-xs text-slate-400 mt-0.5">
                 Kho lưu trữ chính thức trên GitHub của dự án RC4 Lab

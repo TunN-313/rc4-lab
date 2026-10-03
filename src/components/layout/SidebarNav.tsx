@@ -15,6 +15,7 @@ import {
   NavTab,
 } from './navConfig';
 import { isFirebaseConfigured } from '../../firebase/config';
+import { REPO_URL } from '../../config/project';
 
 interface SidebarNavProps {
   activeGroup: NavGroup;
@@ -154,7 +155,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
           {/* Links */}
           <div className="flex items-center justify-between text-slate-400 text-[10px] pt-1">
             <a
-              href="https://github.com/TunN-313/rc4-lab"
+              href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 hover:text-white transition"
