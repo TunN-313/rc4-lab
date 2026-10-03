@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Lock, Mail, UserPlus, LogIn, AlertCircle } from 'lucide-react';
 import { loginWithEmail, registerWithEmail, loginWithGoogle } from '../firebase/auth';
 import { isFirebaseConfigured } from '../firebase/config';
@@ -21,6 +21,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setMode(defaultMode);
+      setErrorMsg('');
+    }
+  }, [isOpen, defaultMode]);
 
   if (!isOpen) return null;
 
@@ -81,7 +88,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
       <div className="relative w-full max-w-md bg-slate-900 border border-cyan-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl shadow-cyan-950/50">
         {/* Close Button */}
         <button

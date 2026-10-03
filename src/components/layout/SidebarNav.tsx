@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import type { User } from 'firebase/auth';
 import {
   X,
   ShieldAlert,
@@ -7,6 +8,8 @@ import {
   Radio,
   ExternalLink,
   Cpu,
+  LogIn,
+  UserPlus,
 } from 'lucide-react';
 import {
   NAV_GROUPS,
@@ -23,6 +26,8 @@ interface SidebarNavProps {
   onSelectPage: (page: NavTab) => void;
   isOpenMobile: boolean;
   onCloseMobile: () => void;
+  user?: User | null;
+  onOpenAuth?: (mode?: 'login' | 'register') => void;
 }
 
 export const SidebarNav: React.FC<SidebarNavProps> = ({
@@ -31,6 +36,8 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
   onSelectPage,
   isOpenMobile,
   onCloseMobile,
+  user,
+  onOpenAuth,
 }) => {
   const currentGroup = NAV_GROUPS[activeGroup];
   const pages = getPagesForGroup(activeGroup);
@@ -144,6 +151,69 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               {isFirebaseConfigured ? 'Online' : 'Offline / Standalone'}
             </span>
+          </div>
+
+          {/* Account status / login in mobile drawer */}
+          <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+            {user ? (
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="w-7 h-7 rounded-full bg-cyan-950 border border-cyan-500/40 flex items-center justify-center text-cyan-300 font-bold text-xs uppercase overflow-hidden shrink-0">
+                    {user.photoURL ? (
+                      <img src={user.photoURL} alt="Avatar" className="w-full h-full object-cover" />
+                    ) : (
+                      user.email?.[0] || 'U'
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold text-slate-200 truncate">
+                      {user.displayName || user.email?.split('@')[0]}
+                    </p>
+                    <p className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Đã xác thực
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    onSelectPage('history');
+                    onCloseMobile();
+                  }}
+                  className="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-[10px] font-mono hover:bg-cyan-500/30 transition cursor-pointer shrink-0"
+                >
+                  Lịch sử
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-[11px] text-slate-400">
+                  <span>Tài khoản sinh viên:</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => {
+                      onOpenAuth?.('login');
+                      onCloseMobile();
+                    }}
+                    className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs transition cursor-pointer"
+                  >
+                    <LogIn className="w-3.5 h-3.5" />
+                    <span>Đăng nhập</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      onOpenAuth?.('register');
+                      onCloseMobile();
+                    }}
+                    className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs transition cursor-pointer"
+                  >
+                    <UserPlus className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Đăng ký</span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Academic safety note */}

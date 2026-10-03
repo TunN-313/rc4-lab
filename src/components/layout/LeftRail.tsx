@@ -12,7 +12,7 @@ interface LeftRailProps {
   activeGroup: NavGroup;
   onSelectGroup: (group: NavGroup) => void;
   user: User | null;
-  onOpenAuth: () => void;
+  onOpenAuth: (mode?: 'login' | 'register') => void;
   onNavigate: (tab: NavTab) => void;
   onOpenMobileDrawer?: () => void;
 }
@@ -97,7 +97,10 @@ export const LeftRail: React.FC<LeftRailProps> = ({
         {/* Bottom: User Avatar Button & Account Popover */}
         <div className="relative flex flex-col items-center gap-2">
           <button
-            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setAccountMenuOpen((prev) => !prev);
+            }}
             aria-label="Tài khoản người dùng"
             aria-haspopup="menu"
             aria-expanded={accountMenuOpen}
@@ -130,6 +133,7 @@ export const LeftRail: React.FC<LeftRailProps> = ({
             onClose={() => setAccountMenuOpen(false)}
             onOpenAuth={onOpenAuth}
             onNavigate={onNavigate}
+            align="left"
           />
         </div>
       </aside>
@@ -163,7 +167,10 @@ export const LeftRail: React.FC<LeftRailProps> = ({
         {/* Mobile Avatar Button */}
         <div className="relative">
           <button
-            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setAccountMenuOpen((prev) => !prev);
+            }}
             aria-label="Tài khoản"
             aria-haspopup="menu"
             aria-expanded={accountMenuOpen}
@@ -191,6 +198,7 @@ export const LeftRail: React.FC<LeftRailProps> = ({
             onClose={() => setAccountMenuOpen(false)}
             onOpenAuth={onOpenAuth}
             onNavigate={onNavigate}
+            align="right"
           />
         </div>
       </nav>

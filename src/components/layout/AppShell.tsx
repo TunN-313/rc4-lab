@@ -18,7 +18,7 @@ interface AppShellProps {
   onSelectGroup: (group: NavGroup) => void;
   onSelectPage: (page: NavTab) => void;
   user: User | null;
-  onOpenAuth: () => void;
+  onOpenAuth: (mode?: 'login' | 'register') => void;
   children: React.ReactNode;
 }
 
@@ -110,6 +110,8 @@ export const AppShell: React.FC<AppShellProps> = ({
           onSelectPage={onSelectPage}
           isOpenMobile={mobileDrawerOpen}
           onCloseMobile={() => setMobileDrawerOpen(false)}
+          user={user}
+          onOpenAuth={onOpenAuth}
         />
 
         {/* 3 & 4. Vùng 3 & 4: Main Content Area (Scrollable view) */}

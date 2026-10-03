@@ -52,6 +52,12 @@ export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [authReady, setAuthReady] = useState(!isFirebaseConfigured);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+
+  const handleOpenAuth = (mode: 'login' | 'register' = 'login') => {
+    setAuthMode(mode);
+    setAuthModalOpen(true);
+  };
 
   // Khởi tạo tab từ hash URL hoặc mặc định là 'home'
   const initialHashTab = typeof window !== 'undefined' ? getTabFromHash(window.location.hash) : null;
@@ -81,7 +87,7 @@ export default function App() {
   const handleNavigate = (page: NavTab) => {
     // Điều kiện bảo vệ: Nếu vào trang history khi chưa đăng nhập và đã kiểm tra auth xong
     if (page === 'history' && !user && authReady) {
-      setAuthModalOpen(true);
+      handleOpenAuth('login');
       const fallback = previousTabRef.current === 'history' ? 'home' : (previousTabRef.current || 'home');
       window.location.hash = '#/' + fallback;
       return;
@@ -129,7 +135,7 @@ export default function App() {
       }
 
       if (targetTab === 'history' && !user && authReady) {
-        setAuthModalOpen(true);
+        handleOpenAuth('login');
         const fallback = previousTabRef.current === 'history' ? 'home' : (previousTabRef.current || 'home');
         window.location.hash = '#/' + fallback;
         return;
@@ -156,7 +162,7 @@ export default function App() {
   // Kiểm tra quyền khi trạng thái đăng nhập được tải xong (tránh tình trạng refresh vào thẳng #/history khi chưa login)
   useEffect(() => {
     if (authReady && activeTab === 'history' && !user) {
-      setAuthModalOpen(true);
+      handleOpenAuth('login');
       const fallback = previousTabRef.current === 'history' ? 'home' : (previousTabRef.current || 'home');
       setActiveTab(fallback);
       setActiveGroup(getGroupForPage(fallback));
@@ -172,7 +178,7 @@ export default function App() {
         onSelectGroup={handleSelectGroup}
         onSelectPage={handleNavigate}
         user={user}
-        onOpenAuth={() => setAuthModalOpen(true)}
+        onOpenAuth={handleOpenAuth}
       >
         {/* 1. Banner cảnh báo an toàn mật mã học bắt buộc */}
         <DisclaimerBanner />
@@ -197,14 +203,14 @@ export default function App() {
         {activeTab === 'visualizer' && <VisualizerView />}
         {activeTab === 'hand_calculation' && <HandCalculationView />}
         {activeTab === 'cipher' && (
-          <CipherToolView user={user} onOpenAuth={() => setAuthModalOpen(true)} />
+          <CipherToolView user={user} onOpenAuth={() => handleOpenAuth('login')} />
         )}
         {activeTab === 'experiments' && (
-          <ExperimentsView user={user} onOpenAuth={() => setAuthModalOpen(true)} />
+          <ExperimentsView user={user} onOpenAuth={() => handleOpenAuth('login')} />
         )}
         {activeTab === 'benchmark' && <BenchmarkView />}
         {activeTab === 'quiz' && (
-          <QuizView user={user} onOpenAuth={() => setAuthModalOpen(true)} />
+          <QuizView user={user} onOpenAuth={() => handleOpenAuth('login')} />
         )}
         {activeTab === 'testing' && <TestingView />}
         {activeTab === 'download' && <DownloadView />}
@@ -212,7 +218,7 @@ export default function App() {
         {activeTab === 'ux_design' && <UxDesignView />}
         {activeTab === 'opensource' && <OpenSourceView />}
         {activeTab === 'history' && (
-          <HistoryView user={user} onOpenAuth={() => setAuthModalOpen(true)} />
+          <HistoryView user={user} onOpenAuth={() => handleOpenAuth('login')} />
         )}
 
         {/* 3. Footer tham chiếu tiêu chuẩn & liên kết chuyển nhanh */}
@@ -223,7 +229,7 @@ export default function App() {
       <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
-        defaultMode="login"
+        defaultMode={authMode}
       />
 
       {/* 5. Chỉ báo trạng thái ngoại tuyến PWA */}
