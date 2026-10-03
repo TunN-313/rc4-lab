@@ -72,7 +72,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
       </div>
 
       {/* Pages List */}
-      <nav aria-label="Danh sách trang con" className="flex-1 overflow-y-auto p-3 space-y-1.5">
+      <nav role="navigation" aria-label="Danh sách trang con" className="flex-1 overflow-y-auto p-3 space-y-1.5">
         {pages.map((page) => {
           const PageIcon = page.icon;
           const isActive = activePage === page.id;
@@ -85,7 +85,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                 if (isMobile) onCloseMobile();
               }}
               aria-current={isActive ? 'page' : undefined}
-              className={`w-full flex items-start gap-3 p-3 rounded-xl transition text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+              className={`w-full flex items-start gap-3 p-3 rounded-xl transition text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
                 isActive
                   ? 'bg-cyan-500/15 border border-cyan-500/40 text-white shadow-[0_0_15px_rgba(6,182,212,0.15)]'
                   : 'text-slate-300 hover:bg-slate-900 border border-transparent'
@@ -195,7 +195,10 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
           />
 
           {/* Drawer content */}
-          <aside className="relative w-80 max-w-[85vw] bg-slate-950 border-r border-cyan-500/30 shadow-2xl h-full flex flex-col z-10 animate-in slide-in-from-left duration-200 pb-16">
+          <aside
+            id="mobile-sidebar-drawer"
+            className="relative w-80 max-w-[85vw] bg-slate-950 border-r border-cyan-500/30 shadow-2xl h-full flex flex-col z-10 animate-in slide-in-from-left duration-200 pb-16"
+          >
             {renderContent(true)}
           </aside>
         </div>

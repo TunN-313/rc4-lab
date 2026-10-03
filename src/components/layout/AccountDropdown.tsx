@@ -51,6 +51,7 @@ export const AccountDropdown: React.FC<AccountDropdownProps> = ({
   return (
     <div
       ref={menuRef}
+      id="account-dropdown-menu"
       role="menu"
       aria-label="Menu tài khoản"
       className="absolute bottom-16 left-3 sm:left-14 w-64 rounded-2xl bg-slate-900 border border-cyan-500/30 shadow-2xl shadow-cyan-950/60 p-2 z-50 text-xs backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150"
@@ -97,7 +98,7 @@ export const AccountDropdown: React.FC<AccountDropdownProps> = ({
                 onClose();
               }}
               role="menuitem"
-              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-cyan-300 hover:bg-cyan-500/10 transition cursor-pointer text-left"
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-cyan-300 hover:bg-cyan-500/10 transition cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >
               <History className="w-4 h-4 text-cyan-400" />
               <span>Lịch sử hoạt động</span>
@@ -109,7 +110,7 @@ export const AccountDropdown: React.FC<AccountDropdownProps> = ({
                 onClose();
               }}
               role="menuitem"
-              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-rose-400 hover:bg-rose-500/10 transition cursor-pointer text-left"
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-rose-400 hover:bg-rose-500/10 transition cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >
               <LogOut className="w-4 h-4" />
               <span>Đăng xuất</span>
@@ -131,7 +132,7 @@ export const AccountDropdown: React.FC<AccountDropdownProps> = ({
               onClose();
             }}
             role="menuitem"
-            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/20 transition cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/20 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
           >
             <LogIn className="w-3.5 h-3.5" />
             <span>Đăng Nhập / Đăng Ký</span>

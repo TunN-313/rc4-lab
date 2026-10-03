@@ -35,6 +35,7 @@ import {
 import { OverallFlowDiagram } from '../components/rc4-diagrams/OverallFlowDiagram';
 import { KsaFlowDiagram } from '../components/rc4-diagrams/KsaFlowDiagram';
 import { PrgaFlowDiagram } from '../components/rc4-diagrams/PrgaFlowDiagram';
+import { setVisualizerContext } from '../components/layout/panelContextStore';
 
 export const VisualizerView: React.FC = () => {
   // Version switch: Full RC4 (N=256) or TinyRC4 (N=4, 8, 16)
@@ -123,6 +124,34 @@ export const VisualizerView: React.FC = () => {
   }, [isPlaying, playSpeedMs, steps.length]);
 
   const currentStep: SimulatorStep | undefined = steps[currentStepIdx];
+
+  // Đồng bộ bước mô phỏng hiện tại sang RightContextPanel mà không re-render AppShell
+  useEffect(() => {
+    if (currentStep) {
+      setVisualizerContext({
+        phase: currentStep.phase,
+        stepIndex: currentStepIdx,
+        totalSteps: steps.length,
+        i: currentStep.i,
+        j: currentStep.j,
+        t: currentStep.phase === 'PRGA' ? currentStep.t : undefined,
+        k: currentStep.phase === 'PRGA' ? currentStep.keystreamByte : undefined,
+        swapped: currentStep.swapped,
+        formula: currentStep.formula,
+        explanation: currentStep.explanation,
+        cipherVersion,
+        tinyN: cipherVersion === 'tiny' ? tinyN : undefined,
+        keyByte: currentStep.phase === 'KSA' ? currentStep.keyByte : undefined,
+        plainByte: currentStep.phase === 'PRGA' ? currentStep.plainByte : undefined,
+        cipherByte: currentStep.phase === 'PRGA' ? currentStep.cipherByte : undefined,
+      });
+    } else {
+      setVisualizerContext(null);
+    }
+    return () => {
+      setVisualizerContext(null);
+    };
+  }, [currentStep, currentStepIdx, steps.length, cipherVersion, tinyN]);
 
   // Load classroom preset (Lecturer Example)
   const handleLoadClassroomPreset = () => {

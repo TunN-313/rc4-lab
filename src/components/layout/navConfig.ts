@@ -81,7 +81,7 @@ export const NAV_GROUPS: Record<NavGroup, NavGroupConfig> = {
     icon: GraduationCap,
     description: 'Lý thuyết toán học, ví dụ tính tay và mô phỏng trực quan',
     defaultPage: 'visualizer',
-    pageIds: ['analysis', 'hand_calculation', 'visualizer'],
+    pageIds: ['analysis', 'visualizer', 'hand_calculation'],
   },
   tools_group: {
     id: 'tools_group',

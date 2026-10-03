@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { User } from 'firebase/auth';
 import { Menu, PanelRightOpen, PanelRightClose, BookOpen } from 'lucide-react';
 import { LeftRail } from './LeftRail';
@@ -34,6 +34,17 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [rightPanelOpen, setRightPanelOpen] = useState(true);
 
+  // Phím Escape đóng mobile drawer
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileDrawerOpen) {
+        setMobileDrawerOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileDrawerOpen]);
+
   const currentPage = NAV_PAGES[activePage] || NAV_PAGES.home;
   const currentGroup = NAV_GROUPS[activeGroup] || NAV_GROUPS.home_group;
   const PageIcon = currentPage.icon;
@@ -48,7 +59,9 @@ export const AppShell: React.FC<AppShellProps> = ({
           <button
             onClick={() => setMobileDrawerOpen(true)}
             aria-label="Mở danh sách trang con"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 border border-slate-800 transition cursor-pointer"
+            aria-expanded={mobileDrawerOpen}
+            aria-controls="mobile-sidebar-drawer"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 border border-slate-800 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             <Menu className="w-5 h-5 text-cyan-400" />
           </button>

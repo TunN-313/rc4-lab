@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   FlaskConical,
   BarChart2,
@@ -34,6 +34,7 @@ import {
   getWordBitsForN,
 } from '../crypto/rc4';
 import { saveExperimentRun } from '../firebase/firestore';
+import { setExperimentsContext } from '../components/layout/panelContextStore';
 
 interface ExperimentsViewProps {
   user: User | null;
@@ -53,6 +54,18 @@ export const ExperimentsView: React.FC<ExperimentsViewProps> = ({ user, onOpenAu
   const [fullBiasResult, setFullBiasResult] = useState<ReturnType<typeof runBiasExperiment> | null>(null);
   const [tinyBiasResult, setTinyBiasResult] = useState<ReturnType<typeof runTinyBiasExperiment> | null>(null);
   const [isCalculatingBias, setIsCalculatingBias] = useState(false);
+
+  // Đồng bộ tab thí nghiệm và thông số sang RightContextPanel
+  useEffect(() => {
+    setExperimentsContext({
+      activeTab: activeExp,
+      biasKeyCount: biasSampleSize,
+      biasTargetByte,
+    });
+    return () => {
+      setExperimentsContext(null);
+    };
+  }, [activeExp, biasSampleSize, biasTargetByte]);
 
   // 2. Key reuse state (Full)
   const [reuseKey, setReuseKey] = useState('SecretKey123');

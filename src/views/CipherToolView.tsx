@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   KeyRound,
   Lock,
@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import { FileCipherPanel } from '../components/FileCipherPanel';
+import { setCipherContext } from '../components/layout/panelContextStore';
 import {
   stringToBytes,
   bytesToString,
@@ -79,6 +80,21 @@ export const CipherToolView: React.FC<CipherToolViewProps> = ({ user, onOpenAuth
   const [copied, setCopied] = useState(false);
   const [saveStatus, setSaveStatus] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  // Đồng bộ định dạng và thiết lập mã hóa sang RightContextPanel
+  useEffect(() => {
+    setCipherContext({
+      activeMode: operation,
+      inputFormat,
+      outputFormat,
+      dropBytes: dropN,
+      dataLengthBytes: cipherVersion === 'full' ? dataInput.length : tinyDataInput.length,
+      keyLengthBytes: cipherVersion === 'full' ? keyInput.length : tinyKeyInput.length,
+    });
+    return () => {
+      setCipherContext(null);
+    };
+  }, [operation, inputFormat, outputFormat, dropN, dataInput.length, keyInput.length, tinyDataInput.length, tinyKeyInput.length, cipherVersion]);
 
   // Load classroom preset (Lecturer Example)
   const handleLoadClassroomPreset = () => {
