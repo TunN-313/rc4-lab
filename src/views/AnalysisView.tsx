@@ -83,7 +83,7 @@ export const AnalysisView: React.FC = () => {
               </div>
               <h2 className="text-lg font-bold text-white">Thuật Toán Khởi Tạo & Trộn Khóa (KSA)</h2>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Mục đích của KSA là biến đổi mảng số tự nhiên tăng dần $S[i]=i$ thành một hoán vị ngẫu nhiên phụ thuộc hoàn toàn vào khóa bí mật. Khóa có độ dài từ 1 đến 256 byte được lặp lại tuần hoàn bằng phép chia lấy dư <code>key[i % keylen]</code>.
+                Mục đích của KSA là biến đổi mảng số tự nhiên tăng dần <code className="font-mono text-cyan-300">S[i] = i</code> thành một hoán vị ngẫu nhiên phụ thuộc hoàn toàn vào khóa bí mật. Khóa có độ dài từ 1 đến 256 byte được lặp lại tuần hoàn bằng phép chia lấy dư <code>key[i % keylen]</code>.
               </p>
 
               <div className="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-xs text-slate-200 space-y-1.5 overflow-x-auto">
@@ -100,7 +100,7 @@ export const AnalysisView: React.FC = () => {
               <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 space-y-1.5">
                 <div className="text-white font-semibold">Điểm yếu cốt lõi trong KSA:</div>
                 <div>
-                  Ở những vòng lặp đầu tiên, giá trị của $S[i]$ có xu hướng giữ nguyên vị trí ban đầu ($S[i]=i$) với xác suất cao, khiến các byte khóa ban đầu ảnh hưởng trực tiếp đến trạng thái của $S$ mà chưa kịp phân tán đều (khuếch tán kém - Poor Avalanche).
+                  Ở những vòng lặp đầu tiên, giá trị của <code className="font-mono text-cyan-300">S[i]</code> có xu hướng giữ nguyên vị trí ban đầu (<code className="font-mono text-cyan-300">S[i] = i</code>) với xác suất cao, khiến các byte khóa ban đầu ảnh hưởng trực tiếp đến trạng thái của <code className="font-mono text-cyan-300">S</code> mà chưa kịp phân tán đều (khuếch tán kém - Poor Avalanche).
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ export const AnalysisView: React.FC = () => {
               </div>
               <h2 className="text-lg font-bold text-white">Thuật Toán Sinh Dòng Khóa (PRGA)</h2>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Sau khi KSA hoàn tất, hai con trỏ $i$ và $j$ bắt đầu từ 0. Tại mỗi bước sinh một byte dòng khóa, thuật toán dịch chuyển $i$, cập nhật $j$, hoán đổi $S[i]$ và $S[j]$, rồi dùng tổng hai phần tử này làm chỉ số tra cứu byte khóa $K$.
+                Sau khi KSA hoàn tất, hai con trỏ <code className="font-mono text-cyan-300">i</code> và <code className="font-mono text-amber-300">j</code> bắt đầu từ 0. Tại mỗi bước sinh một byte dòng khóa, thuật toán dịch chuyển <code className="font-mono text-cyan-300">i</code>, cập nhật <code className="font-mono text-amber-300">j</code>, hoán đổi <code className="font-mono text-slate-200">S[i]</code> và <code className="font-mono text-slate-200">S[j]</code>, rồi dùng tổng hai phần tử này làm chỉ số tra cứu byte khóa <code className="font-mono text-emerald-300">K</code>.
               </p>
 
               <div className="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-xs text-slate-200 space-y-1.5 overflow-x-auto">
@@ -147,7 +147,7 @@ export const AnalysisView: React.FC = () => {
               <span>Phép Toán XOR (⊕) & Tính Chất Đối Xứng Tuyệt Đối</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Mã hóa dòng RC4 không có thuật toán giải mã riêng biệt. Cả bên mã hóa và bên giải mã đều khởi tạo cùng một dòng khóa $K_0, K_1, K_2, \dots$ từ khóa bí mật chung. Toàn bộ tính đối xứng bắt nguồn từ tính chất đại số boolean của phép toán <strong>XOR (Exclusive OR)</strong>:
+              Mã hóa dòng RC4 không có thuật toán giải mã riêng biệt. Cả bên mã hóa và bên giải mã đều khởi tạo cùng một dòng khóa <code className="font-mono text-emerald-300">K₀, K₁, K₂, …</code> từ khóa bí mật chung. Toàn bộ tính đối xứng bắt nguồn từ tính chất đại số boolean của phép toán <strong>XOR (Exclusive OR)</strong>:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
@@ -275,7 +275,7 @@ export const AnalysisView: React.FC = () => {
               </div>
               <h3 className="text-base font-bold text-white">Xu Hướng Trở Về 0 Của Byte Đầu</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Trong một thuật toán sinh số giả ngẫu nhiên lý tưởng, mỗi byte đầu ra $K \in [0..255]$ phải xuất hiện với xác suất đồng đều là $1/256 \approx 0.003906$ (~0.3906%).
+                Trong một thuật toán sinh số giả ngẫu nhiên lý tưởng, mỗi byte đầu ra <code className="font-mono text-emerald-300">K ∈ [0..255]</code> phải xuất hiện với xác suất đồng đều là <code className="font-mono text-slate-200">1/256 ≈ 0.003906</code> (~0.3906%).
               </p>
               <div className="p-3 bg-slate-950 rounded-xl font-mono text-xs text-amber-300 border border-amber-500/20">
                 P(Byte #2 = 0x00) ≈ 1/128 ≈ 0.0078125 (~0.781%)
@@ -293,7 +293,7 @@ export const AnalysisView: React.FC = () => {
               </div>
               <h3 className="text-base font-bold text-white">Cơ Chế IV Yếu + Ghép Chuỗi KSA</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Giao thức WEP 802.11b chỉ sử dụng Vector khởi tạo IV dài 24-bit (chỉ có $2^{24} \approx 16.7$ triệu giá trị, lặp lại sau vài giờ trên mạng bận rộn) và ghép thẳng vào trước khóa bí mật: <code>Key_RC4 = IV || Shared_Key</code>.
+                Giao thức WEP 802.11b chỉ sử dụng Vector khởi tạo IV dài 24-bit (chỉ có <code className="font-mono text-slate-200">2²⁴ ≈ 16.7</code> triệu giá trị, lặp lại sau vài giờ trên mạng bận rộn) và ghép thẳng vào trước khóa bí mật: <code>Key_RC4 = IV || Shared_Key</code>.
               </p>
               <div className="p-3 bg-slate-950 rounded-xl font-mono text-xs text-rose-300 border border-rose-500/20">
                 Khi IV có dạng (B + 3, 255, V), thông tin về byte khóa thứ B bị rò rỉ trực tiếp ra byte đầu tiên của dòng khóa!
@@ -309,15 +309,15 @@ export const AnalysisView: React.FC = () => {
                 <ShieldAlert className="w-4 h-4" />
                 LỖ HỔNG 3: NGUY CƠ TÁI SỬ DỤNG KHÓA (TWO-TIME PAD)
               </div>
-              <h3 className="text-base font-bold text-white">Dòng Khóa Triệt Tiêu: C1 ⊕ C2 = P1 ⊕ P2</h3>
+              <h3 className="text-base font-bold text-white">Dòng Khóa Triệt Tiêu: C₁ ⊕ C₂ = P₁ ⊕ P₂</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Nếu một khóa RC4 được sử dụng để mã hóa hai thông điệp khác nhau ($P_1$ và $P_2$), dòng khóa $K$ sẽ giống hệt nhau. Kẻ nghe lén chỉ cần XOR hai bản mã:
+                Nếu một khóa RC4 được sử dụng để mã hóa hai thông điệp khác nhau (<code className="font-mono text-cyan-300">P₁</code> và <code className="font-mono text-cyan-300">P₂</code>), dòng khóa <code className="font-mono text-emerald-300">K</code> sẽ giống hệt nhau. Kẻ nghe lén chỉ cần XOR hai bản mã:
               </p>
               <div className="p-3 bg-slate-950 rounded-xl font-mono text-xs text-red-300 border border-red-500/20">
-                C1 ⊕ C2 = (P1 ⊕ K) ⊕ (P2 ⊕ K) = P1 ⊕ P2
+                C₁ ⊕ C₂ = (P₁ ⊕ K) ⊕ (P₂ ⊕ K) = P₁ ⊕ P₂
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Khóa bí mật $K$ biến mất hoàn toàn khỏi phương trình. Bằng kỹ thuật <em>Crib Dragging</em> (kéo trượt từ ngữ phổ biến như "HTTP/1.1", "GET ", "Dear "), kẻ tấn công có thể khôi phục cả hai bản rõ trong nháy mắt.
+                Khóa bí mật <code className="font-mono text-emerald-300">K</code> biến mất hoàn toàn khỏi phương trình. Bằng kỹ thuật <em>Crib Dragging</em> (kéo trượt từ ngữ phổ biến như "HTTP/1.1", "GET ", "Dear "), kẻ tấn công có thể khôi phục cả hai bản rõ trong nháy mắt.
               </p>
             </div>
 
@@ -347,7 +347,7 @@ export const AnalysisView: React.FC = () => {
               <span>Biện Pháp Giảm Thiểu Lịch Sử: RC4-drop[n]</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Để loại bỏ các thiên vị ban đầu, các nhà mật mã từng đề xuất biến thể <strong>RC4-drop[n]</strong> (ví dụ <code>RC4-drop[768]</code> hoặc <code>RC4-drop[3072]</code>). Sau khi KSA kết thúc, PRGA sẽ chạy và bỏ đi $n$ byte đầu tiên mà không dùng để mã hóa dữ liệu.
+              Để loại bỏ các thiên vị ban đầu, các nhà mật mã từng đề xuất biến thể <strong>RC4-drop[n]</strong> (ví dụ <code>RC4-drop[768]</code> hoặc <code>RC4-drop[3072]</code>). Sau khi KSA kết thúc, PRGA sẽ chạy và bỏ đi <code className="font-mono text-cyan-300">n</code> byte đầu tiên mà không dùng để mã hóa dữ liệu.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">

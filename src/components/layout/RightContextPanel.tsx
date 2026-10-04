@@ -184,13 +184,13 @@ export const RightContextPanel: React.FC<RightContextPanelProps> = ({
                   <div className="flex items-start gap-2">
                     <span className="w-2 h-2 rounded-full bg-purple-400 mt-1 shrink-0"></span>
                     <span>
-                      <strong className="text-purple-300">Chỉ số t / k (Purple):</strong> Vị trí tra cứu byte dòng khóa PRGA $k = S[t]$ với $t = (S[i] + S[j]) \pmod N$.
+                      <strong className="text-purple-300">Chỉ số t / k (Purple):</strong> Vị trí tra cứu byte dòng khóa PRGA <code className="font-mono text-purple-300">k = S[t]</code> với <code className="font-mono text-purple-300">t = (S[i] + S[j]) mod N</code>.
                     </span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 mt-1 shrink-0"></span>
                     <span>
-                      <strong className="text-emerald-300">Cặp hoán đổi (Emerald):</strong> Hai ô trạng thái vừa tráo đổi $S[i] \leftrightarrow S[j]$.
+                      <strong className="text-emerald-300">Cặp hoán đổi (Emerald):</strong> Hai ô trạng thái vừa tráo đổi <code className="font-mono text-emerald-300">S[i] ↔ S[j]</code>.
                     </span>
                   </div>
                 </div>

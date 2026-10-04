@@ -65,7 +65,7 @@ export const RC4_QUIZ_QUESTIONS: QuizQuestion[] = [
     options: [
       'Phép cộng theo modulo 256 (Modular Addition)',
       'Phép XOR bit (Exclusive OR, ký hiệu ⊕)',
-      'Phép nhân trong trường Galois GF(2^8)',
+      'Phép nhân trong trường Galois GF(2⁸)',
       'Phép dịch vòng bit trái (Bitwise Circular Shift)',
     ],
     correctIndex: 1,
@@ -100,16 +100,16 @@ export const RC4_QUIZ_QUESTIONS: QuizQuestion[] = [
   },
   {
     id: 8,
-    question: 'Nếu người gửi vô tình tái sử dụng cùng một khóa RC4 cho hai bản rõ khác nhau (P1 và P2), nguy cơ bảo mật là gì?',
+    question: 'Nếu người gửi vô tình tái sử dụng cùng một khóa RC4 cho hai bản rõ khác nhau (P₁ và P₂), nguy cơ bảo mật là gì?',
     options: [
       'Không nguy hiểm vì thuật toán sinh số giả ngẫu nhiên có độ entropy cao',
-      'Kẻ nghe trộm có thể tính được C1 ⊕ C2 = P1 ⊕ P2, từ đó áp dụng kỹ thuật Crib-Dragging để giải mã thông điệp mà không cần biết khóa',
+      'Kẻ nghe trộm có thể tính được C₁ ⊕ C₂ = P₁ ⊕ P₂, từ đó áp dụng kỹ thuật Crib-Dragging để giải mã thông điệp mà không cần biết khóa',
       'Bản mã thứ hai sẽ tự động bị hỏng và không thể giải mã',
       'Khóa bí mật sẽ tự động đảo ngược về 0x00',
     ],
     correctIndex: 1,
     explanation:
-      'Vì C1 = P1 ⊕ K và C2 = P2 ⊕ K, nên C1 ⊕ C2 = P1 ⊕ P2 (dòng khóa K bị triệt tiêu hoàn toàn). Kẻ tấn công có thể áp dụng kỹ thuật đoán từ mẫu (Crib-dragging) và tần suất ngôn ngữ để khôi phục toàn bộ P1 và P2.',
+      'Vì C₁ = P₁ ⊕ K và C₂ = P₂ ⊕ K, nên C₁ ⊕ C₂ = P₁ ⊕ P₂ (dòng khóa K bị triệt tiêu hoàn toàn). Kẻ tấn công có thể áp dụng kỹ thuật đoán từ mẫu (Crib-dragging) và tần suất ngôn ngữ để khôi phục toàn bộ P₁ và P₂.',
   },
   {
     id: 9,

@@ -74,7 +74,7 @@ export const UxDesignView: React.FC = () => {
           </h2>
         </div>
         <p className="text-xs text-slate-300 leading-relaxed max-w-4xl">
-          Giao diện máy tính để bàn (Desktop $\ge$ 1024px) được phân định thành 6 vùng chuyên biệt, tách rời thanh điều hướng tổng quát, danh sách chức năng con, không gian tương tác chính và thanh ngữ cảnh học thuật:
+          Giao diện máy tính để bàn (Desktop ≥ 1024px) được phân định thành 6 vùng chuyên biệt, tách rời thanh điều hướng tổng quát, danh sách chức năng con, không gian tương tác chính và thanh ngữ cảnh học thuật:
         </p>
 
         {/* Visual Layout Diagram (High-Fidelity Cyber Mockup) */}
@@ -82,7 +82,7 @@ export const UxDesignView: React.FC = () => {
           <div className="text-[11px] font-mono text-cyan-400 mb-3 flex items-center justify-between">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-              Sơ Đồ Bố Cục 6 Vùng Màn Hình Lớn (Desktop $\ge$ 1024px)
+              Sơ Đồ Bố Cục 6 Vùng Màn Hình Lớn (Desktop ≥ 1024px)
             </span>
             <span className="text-slate-500 hidden sm:inline">Tỷ lệ trực quan AppShell.tsx</span>
           </div>
@@ -189,7 +189,7 @@ export const UxDesignView: React.FC = () => {
                   </div>
                   <div className="p-2 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-[9px] text-cyan-200 space-y-1">
                     <div className="font-bold text-cyan-300">Live Step Info / Hints</div>
-                    <div>$i, j, t$, công thức bước hiện tại</div>
+                    <div><code className="font-mono text-cyan-300">i</code>, <code className="font-mono text-amber-300">j</code>, <code className="font-mono text-purple-300">t</code>, công thức bước hiện tại</div>
                   </div>
                   <div className="p-2 rounded-lg bg-slate-900/80 border border-slate-800 text-[9px] text-slate-300 space-y-1">
                     <div className="font-bold text-slate-200">Ghi Chú Khoa Học</div>
@@ -494,7 +494,7 @@ export const UxDesignView: React.FC = () => {
             </div>
             <h4 className="text-sm font-bold text-white">Học Lý Thuyết (Learn)</h4>
             <p className="text-[11px] text-slate-400 leading-relaxed">
-              Đọc phân tích KSA/PRGA, tính chất toán học phép XOR, bối cảnh lịch sử 1994 và ví dụ bài giảng tính tay TinyRC4 ($N=8$).
+              Đọc phân tích KSA/PRGA, tính chất toán học phép XOR, bối cảnh lịch sử 1994 và ví dụ bài giảng tính tay TinyRC4 (N = 8).
             </p>
           </div>
 
@@ -505,7 +505,7 @@ export const UxDesignView: React.FC = () => {
             </div>
             <h4 className="text-sm font-bold text-white">Mô Phỏng Trực Quan (Simulate)</h4>
             <p className="text-[11px] text-slate-400 leading-relaxed">
-              Theo dõi ma trận hoán vị $S$ (16x16 & 1 hàng), điều khiển bước chạy KSA/PRGA, quan sát trực quan con trỏ $i, j, t$.
+              Theo dõi ma trận hoán vị <code className="font-mono text-cyan-300">S</code> (16x16 & 1 hàng), điều khiển bước chạy KSA/PRGA, quan sát trực quan con trỏ <code className="font-mono text-cyan-300">i</code>, <code className="font-mono text-amber-300">j</code>, <code className="font-mono text-purple-300">t</code>.
             </p>
           </div>
 
@@ -705,7 +705,7 @@ export const UxDesignView: React.FC = () => {
                 <div className="pt-2 border-t border-slate-800">
                   <strong className="text-cyan-300 font-mono text-sm">Fira Code (Monospace)</strong>
                   <p className="text-slate-400 text-[11px] mt-0.5">
-                    Dùng cho mảng byte Hex (<code>0x4B</code>), chuỗi nhị phân, công thức toán học modulo, ma trận hoán vị $S$ và mã nguồn CLI.
+                    Dùng cho mảng byte Hex (<code>0x4B</code>), chuỗi nhị phân, công thức toán học modulo, ma trận hoán vị <code className="font-mono text-cyan-300">S</code> và mã nguồn CLI.
                   </p>
                 </div>
               </div>

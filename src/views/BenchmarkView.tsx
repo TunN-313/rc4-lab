@@ -770,7 +770,7 @@ export const BenchmarkView: React.FC = () => {
                       )}
                       <td className="py-3 px-3.5 text-center">
                         <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300">
-                          Tuyến tính $O(n)$
+                          Tuyến tính O(n)
                         </span>
                       </td>
                     </tr>
@@ -787,7 +787,7 @@ export const BenchmarkView: React.FC = () => {
               </div>
               <ul className="space-y-1 list-disc list-inside text-slate-400">
                 <li>
-                  <strong className="text-cyan-300">Tính tuyến tính $O(n)$:</strong> Thời gian thực thi của thuật toán RC4 tăng tỉ lệ thuận trực tiếp với kích thước dữ liệu (khối 5 MB gấp ~5 lần khối 1 MB), bởi vì mỗi byte đầu ra đòi hỏi số phép toán hoán đổi và XOR không đổi.
+                  <strong className="text-cyan-300">Tính tuyến tính <code className="font-mono text-cyan-300">O(n)</code>:</strong> Thời gian thực thi của thuật toán RC4 tăng tỉ lệ thuận trực tiếp với kích thước dữ liệu (khối 5 MB gấp ~5 lần khối 1 MB), bởi vì mỗi byte đầu ra đòi hỏi số phép toán hoán đổi và XOR không đổi.
                 </li>
                 <li>
                   <strong className="text-amber-300">Đối chiếu WebCrypto AES-GCM:</strong> WebCrypto AES-GCM được tăng tốc trực tiếp bằng phần cứng CPU (AES-NI Instructions) và thực thi trong C++ engine của trình duyệt, do đó đạt thông lượng cực đại trên các khối lớn. RC4 ở đây thể hiện sức mạnh của thuật toán mật mã dòng phần mềm gọn nhẹ, chạy độc lập không cần thư viện ngoài.

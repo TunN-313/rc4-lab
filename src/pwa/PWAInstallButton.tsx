@@ -152,7 +152,7 @@ export const PWAInstallButton: React.FC<{ compact?: boolean }> = ({ compact = fa
                     2
                   </span>
                   <span>
-                    Nhấn vào biểu tượng <strong>Cài đặt (Install / Màn hình máy tính)</strong> hoặc mở menu <code>...</code> $\rightarrow$ <strong>Cài đặt RC4 Lab</strong>.
+                    Nhấn vào biểu tượng <strong>Cài đặt (Install / Màn hình máy tính)</strong> hoặc mở menu <code>...</code> → <strong>Cài đặt RC4 Lab</strong>.
                   </span>
                 </div>
               </div>

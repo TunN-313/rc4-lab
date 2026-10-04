@@ -41,7 +41,7 @@ export const OverallFlowDiagram: React.FC<OverallFlowDiagramProps> = ({
             (1) Sơ Đồ Khối Tổng Thể Thuật Toán RC4 (Overall Flow Diagram)
           </h3>
           <p className="text-xs text-slate-400">
-            Minh họa luồng dữ liệu hai chiều: Khóa $K \to$ KSA $\to$ Mảng $S \to$ PRGA $\to$ Dòng khóa $k_i \oplus$ Dữ liệu
+            Minh họa luồng dữ liệu hai chiều: Khóa <code className="font-mono text-emerald-300">K</code> → KSA → Mảng <code className="font-mono text-cyan-300">S</code> → PRGA → Dòng khóa <code className="font-mono text-purple-300">kᵢ</code> ⊕ Dữ liệu
           </p>
         </div>
 
@@ -193,7 +193,7 @@ export const OverallFlowDiagram: React.FC<OverallFlowDiagramProps> = ({
               MẢNG S HOÁN VỊ
             </text>
             <text x="60" y="44" fill="#a5f3fc" fontSize="9" textAnchor="middle" fontStyle="italic">
-              Sau KSA ($N=8$)
+              Sau KSA (N = 8)
             </text>
             <text x="60" y="64" fill="#38bdf8" fontSize="11" textAnchor="middle" fontWeight="bold" fontFamily="monospace">
               [6,0,7,1..]

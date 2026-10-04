@@ -29,7 +29,7 @@ export const KsaFlowDiagram: React.FC<KsaFlowDiagramProps> = ({
             (2) Sơ Đồ Thuật Toán Khởi Tạo & Xáo Trộn Khóa KSA (Key-Scheduling Algorithm)
           </h3>
           <p className="text-xs text-slate-400">
-            Mỗi vòng lặp $i$ từ $0 \to {N - 1}$: Tính con trỏ $j$ mới dựa trên khóa $T[i]$ và hoán vị $S[i] \leftrightarrow S[j]$
+            Mỗi vòng lặp <code className="font-mono text-cyan-300">i</code> từ <code className="font-mono text-slate-300">0 → {N - 1}</code>: Tính con trỏ <code className="font-mono text-amber-300">j</code> mới dựa trên khóa <code className="font-mono text-emerald-300">T[i]</code> và hoán vị <code className="font-mono text-slate-200">S[i] ↔ S[j]</code>
           </p>
         </div>
 

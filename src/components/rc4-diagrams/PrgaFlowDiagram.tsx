@@ -37,7 +37,7 @@ export const PrgaFlowDiagram: React.FC<PrgaFlowDiagramProps> = ({
             (3) Sơ Đồ Thuật Toán Sinh Dòng Khóa PRGA & Phép XOR (Pseudo-Random Generation)
           </h3>
           <p className="text-xs text-slate-400">
-            Mỗi vòng sinh 1 byte khóa: Cập nhật $i, j \to$ Hoán đổi $S[i] \leftrightarrow S[j] \to$ Tính $t \to$ Trích $k = S[t] \to$ XOR dữ liệu
+            Mỗi vòng sinh 1 byte khóa: Cập nhật <code className="font-mono text-cyan-300">i</code>, <code className="font-mono text-amber-300">j</code> → Hoán đổi <code className="font-mono text-slate-200">S[i] ↔ S[j]</code> → Tính <code className="font-mono text-purple-300">t</code> → Trích <code className="font-mono text-emerald-300">k = S[t]</code> → XOR dữ liệu
           </p>
         </div>
 

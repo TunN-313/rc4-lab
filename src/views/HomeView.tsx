@@ -132,11 +132,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           <ul className="space-y-2.5 text-xs text-slate-300">
             <li className="flex items-start gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0"></div>
-              <span><strong>Sinh dòng khóa giả ngẫu nhiên (Keystream):</strong> Thuật toán dùng một khóa bí mật ban đầu để liên tục tạo ra chuỗi byte ngẫu nhiên $K_0, K_1, K_2, \dots$</span>
+              <span><strong>Sinh dòng khóa giả ngẫu nhiên (Keystream):</strong> Thuật toán dùng một khóa bí mật ban đầu để liên tục tạo ra chuỗi byte ngẫu nhiên <code className="font-mono text-emerald-300">K₀, K₁, K₂, …</code></span>
             </li>
             <li className="flex items-start gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0"></div>
-              <span><strong>Mã hóa tức thời theo từng byte/bit:</strong> Mỗi byte bản rõ $P_i$ được kết hợp với một byte dòng khóa $K_i$ tương ứng bằng phép toán logic <strong>XOR (⊕)</strong>: $C_i = P_i \oplus K_i$.</span>
+              <span><strong>Mã hóa tức thời theo từng byte/bit:</strong> Mỗi byte bản rõ <code className="font-mono text-cyan-300">Pᵢ</code> được kết hợp với một byte dòng khóa <code className="font-mono text-emerald-300">Kᵢ</code> tương ứng bằng phép toán logic <strong>XOR (⊕)</strong>: <code className="font-mono text-cyan-300">Cᵢ = Pᵢ ⊕ Kᵢ</code>.</span>
             </li>
             <li className="flex items-start gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0"></div>
@@ -182,7 +182,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
         <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
           <h2 className="text-2xl font-bold text-white">Kiến Trúc Hai Giai Đoạn Của RC4</h2>
           <p className="text-slate-400 text-xs sm:text-sm">
-            RC4 hoạt động hoàn toàn dựa trên một mảng trạng thái $S$ gồm 256 byte thông qua hai giải thuật tuần tự:
+            RC4 hoạt động hoàn toàn dựa trên một mảng trạng thái <code className="font-mono text-cyan-300">S</code> gồm 256 byte thông qua hai giải thuật tuần tự:
           </p>
         </div>
 
@@ -197,7 +197,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             </div>
             <h3 className="text-base font-bold text-white">Khóa Bí Mật & Mảng S</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Khởi tạo mảng $S$ với $S[0]=0, S[1]=1, \dots, S[255]=255$. Khóa biến thiên $K$ được nạp vào bộ nhớ để chuẩn bị quá trình xáo trộn.
+              Khởi tạo mảng <code className="font-mono text-cyan-300">S</code> với <code className="font-mono text-cyan-300">S[0]=0, S[1]=1, …, S[255]=255</code>. Khóa biến thiên <code className="font-mono text-emerald-300">K</code> được nạp vào bộ nhớ để chuẩn bị quá trình xáo trộn.
             </p>
             <div className="font-mono text-[11px] text-slate-400 bg-slate-900 p-2.5 rounded-lg border border-slate-800">
               for i = 0 to 255:<br />
@@ -215,7 +215,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             </div>
             <h3 className="text-base font-bold text-white">Thuật Toán KSA</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
-              <strong>Key-Scheduling Algorithm:</strong> Dùng khóa để xáo trộn hoán vị mảng $S$. Biến con trỏ $j$ cập nhật dựa trên giá trị khóa và phần tử $S[i]$.
+              <strong>Key-Scheduling Algorithm:</strong> Dùng khóa để xáo trộn hoán vị mảng <code className="font-mono text-cyan-300">S</code>. Biến con trỏ <code className="font-mono text-amber-300">j</code> cập nhật dựa trên giá trị khóa và phần tử <code className="font-mono text-cyan-300">S[i]</code>.
             </p>
             <div className="font-mono text-[11px] text-cyan-300 bg-slate-900 p-2.5 rounded-lg border border-slate-800">
               j = (j + S[i] + key[i % len]) mod 256<br />
@@ -233,7 +233,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             </div>
             <h3 className="text-base font-bold text-white">Thuật Toán PRGA & XOR</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
-              <strong>Pseudo-Random Generation:</strong> Liên tục biến đổi $S$ để sinh byte dòng khóa $K_t$, sau đó XOR với bản rõ để tạo ra bản mã hóa.
+              <strong>Pseudo-Random Generation:</strong> Liên tục biến đổi <code className="font-mono text-cyan-300">S</code> để sinh byte dòng khóa <code className="font-mono text-emerald-300">Kₜ</code>, sau đó XOR với bản rõ để tạo ra bản mã hóa.
             </p>
             <div className="font-mono text-[11px] text-emerald-300 bg-slate-900 p-2.5 rounded-lg border border-slate-800">
               t = (S[i] + S[j]) mod 256<br />

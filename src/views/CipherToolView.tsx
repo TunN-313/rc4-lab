@@ -413,7 +413,7 @@ export const CipherToolView: React.FC<CipherToolViewProps> = ({ user, onOpenAuth
                 <span>Ví Dụ Bài Giảng Chuẩn Của Giảng Viên: TinyRC4 N = 8 (Từ mã 3-bit, 0..7)</span>
               </div>
               <p className="text-slate-300 text-[11px] leading-relaxed">
-                Khóa <code className="text-emerald-300 font-mono font-bold">K = [2, 1, 3]</code> $\implies$ mảng <code className="text-cyan-300 font-mono">T = [2, 1, 3, 2, 1, 3, 2, 1]</code> • Bản rõ <code className="text-emerald-300 font-mono font-bold">P = [1, 0, 6]</code> (chuỗi nhị phân 001 000 110, ánh xạ từ các chữ cái <strong>"BAG"</strong>).
+                Khóa <code className="text-emerald-300 font-mono font-bold">K = [2, 1, 3]</code> ⇒ mảng <code className="text-cyan-300 font-mono">T = [2, 1, 3, 2, 1, 3, 2, 1]</code> • Bản rõ <code className="text-emerald-300 font-mono font-bold">P = [1, 0, 6]</code> (chuỗi nhị phân 001 000 110, ánh xạ từ các chữ cái <strong>"BAG"</strong>).
               </p>
             </div>
             {isClassroomMatch ? (
@@ -684,7 +684,7 @@ export const CipherToolView: React.FC<CipherToolViewProps> = ({ user, onOpenAuth
                     }}
                     className="px-2.5 py-1 text-xs rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-mono transition cursor-pointer"
                   >
-                    Giải mã mẫu (C=[4,3,2,3] $\to$ P=[1,2,2,2])
+                    Giải mã mẫu (C=[4,3,2,3] → P=[1,2,2,2])
                   </button>
                 </>
               )}

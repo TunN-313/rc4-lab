@@ -626,11 +626,11 @@ export const ExperimentsView: React.FC<ExperimentsViewProps> = ({ user, onOpenAu
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
               <span>Tấn Công Tái Sử Dụng Khóa (Two-Time Pad / Key Reuse Vulnerability)</span>
               <span className="text-xs font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">
-                C1 ⊕ C2 = P1 ⊕ P2
+                C₁ ⊕ C₂ = P₁ ⊕ P₂
               </span>
             </h2>
             <p className="text-xs text-slate-400 mt-1">
-              Khi cùng một khóa được dùng để mã hóa hai bức điện khác nhau, dòng khóa bí mật bị triệt tiêu hoàn toàn khi XOR hai bản mã: $(P_1 \oplus K) \oplus (P_2 \oplus K) = P_1 \oplus P_2$.
+              Khi cùng một khóa được dùng để mã hóa hai bức điện khác nhau, dòng khóa bí mật bị triệt tiêu hoàn toàn khi XOR hai bản mã: <code className="font-mono text-cyan-300">(P₁ ⊕ K) ⊕ (P₂ ⊕ K) = P₁ ⊕ P₂</code>.
             </p>
           </div>
 
@@ -830,10 +830,10 @@ export const ExperimentsView: React.FC<ExperimentsViewProps> = ({ user, onOpenAu
                   Tỷ lệ khác biệt dòng khóa TinyRC4: {tinyAvalancheResult.pct}% ({tinyAvalancheResult.diffCount}/{tinyAvalancheResult.total} từ)
                 </div>
                 <div className="text-slate-300">
-                  Khóa 1: [{formatNumberArray(tinyAvalancheResult.key1)}] $\implies$ Dòng khóa 1: [{formatNumberArray(tinyAvalancheResult.ks1)}]
+                  Khóa 1: [{formatNumberArray(tinyAvalancheResult.key1)}] ⇒ Dòng khóa 1: [{formatNumberArray(tinyAvalancheResult.ks1)}]
                 </div>
                 <div className="text-slate-300">
-                  Khóa 2 (Lật 1 bit): [{formatNumberArray(tinyAvalancheResult.key2)}] $\implies$ Dòng khóa 2: [{formatNumberArray(tinyAvalancheResult.ks2)}]
+                  Khóa 2 (Lật 1 bit): [{formatNumberArray(tinyAvalancheResult.key2)}] ⇒ Dòng khóa 2: [{formatNumberArray(tinyAvalancheResult.ks2)}]
                 </div>
               </div>
             )

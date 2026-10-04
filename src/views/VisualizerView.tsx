@@ -239,7 +239,7 @@ export const VisualizerView: React.FC = () => {
         </h1>
         <p className="text-slate-400 text-xs sm:text-sm max-w-3xl leading-relaxed">
           Quan sát chuyển động thực tế của hai con trỏ <strong className="text-cyan-400">i</strong> và{' '}
-          <strong className="text-amber-400">j</strong>, quá trình hoán đổi các phần tử trong mảng $S$, và cách PRGA rút trích byte dòng khóa để XOR tạo ra bản mã.
+          <strong className="text-amber-400">j</strong>, quá trình hoán đổi các phần tử trong mảng <code className="font-mono text-cyan-300">S</code>, và cách PRGA rút trích byte dòng khóa để XOR tạo ra bản mã.
         </p>
       </div>
 
@@ -564,7 +564,7 @@ export const VisualizerView: React.FC = () => {
                 {currentStep.phase === 'PRGA' && (
                   <>
                     <span className="px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-300 font-bold">
-                      t = {currentStep.t} $\implies$ Byte khóa k = {currentStep.keystreamByte}
+                      t = {currentStep.t} ⇒ Byte khóa k = {currentStep.keystreamByte}
                     </span>
                     {currentStep.cipherByte !== undefined && (
                       <span className="px-2 py-0.5 rounded bg-rose-950 border border-rose-800 text-rose-300 font-bold">
@@ -919,7 +919,7 @@ export const VisualizerView: React.FC = () => {
                   <th className="py-2.5 px-3">Hoán đổi (Swap)</th>
                   <th className="py-2.5 px-3">Mảng S sau swap</th>
                   <th className="py-2.5 px-3">t / Byte khóa k</th>
-                  <th className="py-2.5 px-3">P $\oplus$ k $\to$ C</th>
+                  <th className="py-2.5 px-3">P ⊕ k → C</th>
                   <th className="py-2.5 px-3">Công thức tính</th>
                 </tr>
               </thead>
@@ -958,7 +958,7 @@ export const VisualizerView: React.FC = () => {
                         [{formatNumberArray(st.sBefore)}]
                       </td>
                       <td className="py-2.5 px-3 text-purple-300 font-bold whitespace-nowrap">
-                        S[{st.swapped[0]}] $\leftrightarrow$ S[{st.swapped[1]}]
+                        S[{st.swapped[0]}] ↔ S[{st.swapped[1]}]
                       </td>
                       <td className="py-2.5 px-3 text-cyan-200 font-bold">
                         [{formatNumberArray(st.sAfter)}]
@@ -966,7 +966,7 @@ export const VisualizerView: React.FC = () => {
                       <td className="py-2.5 px-3">
                         {st.phase === 'PRGA' ? (
                           <span className="text-emerald-400 font-bold">
-                            t={st.t} $\implies$ k={st.keystreamByte}
+                            t={st.t} ⇒ k={st.keystreamByte}
                           </span>
                         ) : (
                           <span className="text-slate-600">---</span>
@@ -975,7 +975,7 @@ export const VisualizerView: React.FC = () => {
                       <td className="py-2.5 px-3">
                         {st.phase === 'PRGA' && st.plainByte !== undefined && st.cipherByte !== undefined ? (
                           <span className="text-rose-300">
-                            {st.plainByte} $\oplus$ {st.keystreamByte} = {st.cipherByte}
+                            {st.plainByte} ⊕ {st.keystreamByte} = {st.cipherByte}
                           </span>
                         ) : (
                           <span className="text-slate-600">---</span>

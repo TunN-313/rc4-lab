@@ -289,7 +289,7 @@ export const HandCalculationView: React.FC = () => {
               Ví Dụ Tính Tay TinyRC4 (Hand-Calculation)
             </h1>
             <p className="text-slate-400 text-xs sm:text-sm max-w-3xl leading-relaxed mt-1">
-              Toàn bộ các bước tính toán bằng tay kinh điển theo giáo trình đại học: Khởi tạo mảng $S$, từng vòng lặp KSA, từng bước sinh dòng khóa PRGA và phép toán XOR nhị phân $P \oplus K = C$. Đối chiếu trực tiếp từng phép tính với bộ mã TinyRC4 thuần túy.
+              Toàn bộ các bước tính toán bằng tay kinh điển theo giáo trình đại học: Khởi tạo mảng <code className="font-mono text-cyan-300">S</code>, từng vòng lặp KSA, từng bước sinh dòng khóa PRGA và phép toán XOR nhị phân <code className="font-mono text-cyan-300">P ⊕ K = C</code>. Đối chiếu trực tiếp từng phép tính với bộ mã TinyRC4 thuần túy.
             </p>
           </div>
 
@@ -522,16 +522,16 @@ export const HandCalculationView: React.FC = () => {
               1
             </span>
             <h3 className="text-base font-bold text-white">
-              Khởi Tạo Mảng Trạng Thái $S$ & Mảng Khóa $T$ Ban Đầu
+              Khởi Tạo Mảng Trạng Thái S & Mảng Khóa T Ban Đầu
             </h3>
           </div>
-          <span className="text-xs font-mono text-cyan-400">Trạng thái trước KSA ($i=0, j=0$)</span>
+          <span className="text-xs font-mono text-cyan-400">Trạng thái trước KSA (i=0, j=0)</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
           <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
             <div className="text-slate-400 font-sans font-semibold">
-              Mảng Trạng Thái $S$ Ban Đầu ($S[i] = i, \forall i \in [0..{computation.N - 1}]$):
+              Mảng Trạng Thái S Ban Đầu (S[i] = i, ∀i ∈ [0..{computation.N - 1}]):
             </div>
             <div className="text-cyan-300 font-bold text-sm bg-slate-900 p-2.5 rounded-lg border border-slate-800">
               S = [{formatNumberArray(Array.from({ length: computation.N }, (_, i) => i))}]
@@ -572,7 +572,7 @@ export const HandCalculationView: React.FC = () => {
             </div>
           </div>
           <span className="text-xs font-mono text-emerald-400">
-            Tổng cộng: {computation.handKsa.length} vòng lặp ($i = 0 \to {computation.N - 1}$)
+            Tổng cộng: {computation.handKsa.length} vòng lặp (i = 0 → {computation.N - 1})
           </span>
         </div>
 
@@ -582,7 +582,7 @@ export const HandCalculationView: React.FC = () => {
               <tr>
                 <th className="py-2.5 px-3">Vòng i</th>
                 <th className="py-2.5 px-3">Mảng S trước swap</th>
-                <th className="py-2.5 px-3">Công thức tính $j$</th>
+                <th className="py-2.5 px-3">Công thức tính <span className="font-mono text-amber-300">j</span></th>
                 <th className="py-2.5 px-3">Hoán đổi (Swap)</th>
                 <th className="py-2.5 px-3">Mảng S sau swap (Tính tay)</th>
                 <th className="py-2.5 px-3">Mã TinyRC4 Tính Live</th>
@@ -613,7 +613,7 @@ export const HandCalculationView: React.FC = () => {
                     </td>
                     <td className="py-2.5 px-3 text-emerald-300 font-mono">{st.calcFormula}</td>
                     <td className="py-2.5 px-3 text-purple-300 font-bold whitespace-nowrap">
-                      S[{st.swapPair[0]}] $\leftrightarrow$ S[{st.swapPair[1]}]
+                      S[{st.swapPair[0]}] ↔ S[{st.swapPair[1]}]
                     </td>
                     <td className="py-2.5 px-3 text-white font-bold">
                       [{formatNumberArray(st.sAfter)}]
@@ -642,7 +642,7 @@ export const HandCalculationView: React.FC = () => {
         {/* Result of KSA */}
         <div className="p-3.5 rounded-xl bg-slate-950 border border-cyan-500/30 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
           <div className="flex items-center gap-2">
-            <span className="text-slate-400">Mảng $S$ thu được sau KSA:</span>
+            <span className="text-slate-400">Mảng <code className="font-mono text-cyan-300">S</code> thu được sau KSA:</span>
             <span className="text-cyan-300 font-bold text-sm">
               [{formatNumberArray(computation.handKsa[computation.handKsa.length - 1]?.sAfter || [])}]
             </span>
@@ -716,7 +716,7 @@ export const HandCalculationView: React.FC = () => {
                       i = {st.newI}, j = {st.newJ}
                     </td>
                     <td className="py-2.5 px-3 text-purple-300 font-bold whitespace-nowrap">
-                      S[{st.swapPair[0]}] $\leftrightarrow$ S[{st.swapPair[1]}]
+                      S[{st.swapPair[0]}] ↔ S[{st.swapPair[1]}]
                     </td>
                     <td className="py-2.5 px-3 text-slate-200 font-bold">
                       [{formatNumberArray(st.sAfter)}]
@@ -761,7 +761,7 @@ export const HandCalculationView: React.FC = () => {
             </span>
             <div>
               <h3 className="text-base font-bold text-white">
-                Phép Toán XOR Đối Xứng: Mã Hóa ($P \oplus K \to C$) & Giải Mã ($C \oplus K \to P$)
+                Phép Toán XOR Đối Xứng: Mã Hóa (P ⊕ K → C) & Giải Mã (C ⊕ K → P)
               </h3>
               <p className="text-xs text-slate-400">
                 Hiển thị đồng thời dưới dạng số thập phân và chuỗi nhị phân (Binary {getWordBitsForN(computation.N)}-bit)
@@ -779,9 +779,9 @@ export const HandCalculationView: React.FC = () => {
                 <th className="py-2.5 px-3">Bản rõ P (Thập phân)</th>
                 <th className="py-2.5 px-3">Bản rõ P (Nhị phân)</th>
                 <th className="py-2.5 px-3">Khóa k (Nhị phân)</th>
-                <th className="py-2.5 px-3">Bản mã C (P $\oplus$ k)</th>
+                <th className="py-2.5 px-3">Bản mã C (P ⊕ k)</th>
                 <th className="py-2.5 px-3">Bản mã C (Nhị phân)</th>
-                <th className="py-2.5 px-3">Giải mã (C $\oplus$ k $\to$ P)</th>
+                <th className="py-2.5 px-3">Giải mã (C ⊕ k → P)</th>
                 <th className="py-2.5 px-3 text-center">Đối chiếu Live</th>
               </tr>
             </thead>
@@ -811,7 +811,7 @@ export const HandCalculationView: React.FC = () => {
                   </td>
                   <td className="py-2.5 px-3 text-rose-400">{row.cipherBin}</td>
                   <td className="py-2.5 px-3 text-emerald-300 font-bold">
-                    {row.cipherVal} $\oplus$ {row.kVal} = {row.plainVal}{' '}
+                    {row.cipherVal} ⊕ {row.kVal} = {row.plainVal}{' '}
                     {!isEditable && (
                       <span className="text-slate-400 text-xs">
                         ("{TINY_RC4_CLASSROOM_EXAMPLE.plaintextLetters[row.idx]}")
@@ -882,7 +882,7 @@ export const HandCalculationView: React.FC = () => {
                 <span className="text-emerald-400 font-mono text-2xl font-black">✔</span>
               </div>
               <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                Tất cả các giá trị trung gian: Mảng $S$ khởi tạo, $T$ lặp tuần hoàn, {computation.handKsa.length} vòng lặp KSA, {computation.handPrga.length} vòng sinh dòng khóa PRGA, và phép XOR nhị phân {computation.handXor.length} byte bản mã và giải mã khôi phục đều khớp 100% giữa bảng tính tay và mô-đun TinyRC4 thuần túy.
+                Tất cả các giá trị trung gian: Mảng <code className="font-mono text-cyan-300">S</code> khởi tạo, <code className="font-mono text-emerald-300">T</code> lặp tuần hoàn, {computation.handKsa.length} vòng lặp KSA, {computation.handPrga.length} vòng sinh dòng khóa PRGA, và phép XOR nhị phân {computation.handXor.length} byte bản mã và giải mã khôi phục đều khớp 100% giữa bảng tính tay và mô-đun TinyRC4 thuần túy.
               </p>
             </div>
           </div>

@@ -55,19 +55,19 @@ export const ArchitectureView: React.FC = () => {
               <li className="flex items-start gap-2.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0"></div>
                 <div>
-                  <strong className="text-white">React 19 & Hooks:</strong> Quản lý trạng thái động mượt mà cho lưới 16x16 ô nhớ (256 bytes), con trỏ $i$, $j$, và vòng lặp tự động chạy từng bước mà không làm đơ giao diện.
+                  <strong className="text-white">React 19 & Hooks:</strong> Quản lý trạng thái của lưới 16x16 (256 ô), con trỏ <code className="font-mono text-cyan-300">i</code>, <code className="font-mono text-amber-300">j</code> và vòng lặp tự chạy từng bước.
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0"></div>
                 <div>
-                  <strong className="text-white">TypeScript 5:</strong> Đảm bảo tính an toàn kiểu dữ liệu tuyệt đối cho các mảng byte 8-bit (Uint8Array, mảng số $0..255$, phép toán modulo $256$) và các cấu trúc dữ liệu mô phỏng KSA/PRGA.
+                  <strong className="text-white">TypeScript 5:</strong> Đảm bảo tính an toàn kiểu dữ liệu tuyệt đối cho các mảng byte 8-bit (<code className="font-mono text-cyan-300">Uint8Array</code>, mảng số <code className="font-mono text-slate-200">0..255</code>, phép toán <code className="font-mono text-purple-300">mod 256</code>) và các cấu trúc dữ liệu mô phỏng KSA/PRGA.
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0"></div>
                 <div>
-                  <strong className="text-white">Vite 8:</strong> Công cụ đóng gói hiện đại với kiến trúc Native ES Modules, mang lại tốc độ biên dịch thần tốc và kích thước gói tối ưu.
+                  <strong className="text-white">Vite 8:</strong> Công cụ build và dev server dựa trên ES Modules, khởi động nhanh khi phát triển.
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
@@ -297,7 +297,7 @@ export const ArchitectureView: React.FC = () => {
                   Bị nghẽn nếu gửi từng bước hoán đổi mảng qua mạng (Network Latency).
                 </td>
                 <td className="py-3 px-3 text-rose-400">
-                  Cần thuê VPS ($5-$20/tháng), phải cấu hình sao lưu DB và giám sát uptime.
+                  Cần thuê VPS (5 – 20 USD/tháng), phải cấu hình sao lưu DB và giám sát uptime.
                 </td>
                 <td className="py-3 px-3 text-slate-400">
                   Tốn công vận hành không cần thiết.
